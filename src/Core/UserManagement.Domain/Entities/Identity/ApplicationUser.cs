@@ -17,7 +17,7 @@ public class ApplicationUser : IdentityUser<Guid>, IAuditableEntity
     public string? DeletedBy { get; set; }
     public DateTime? DeletedAt { get; set; }
 
-    private ApplicationUser()
+    public ApplicationUser()
     {
 
     }

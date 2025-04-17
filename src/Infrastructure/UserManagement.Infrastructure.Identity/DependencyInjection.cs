@@ -8,8 +8,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using UserManagement.Application.Common.Interfaces.Identity;
+using UserManagement.Application.Common.Interfaces.Repositories;
 using UserManagement.Domain.Entities.Identity;
 using UserManagement.Infrastructure.Identity.Contexts;
+using UserManagement.Infrastructure.Identity.Repositories;
 using UserManagement.Infrastructure.Identity.Services;
 using UserManagement.Shared.Kernel.Settings;
 
@@ -33,6 +35,9 @@ public static class DependencyInjection
         })
         .AddEntityFrameworkStores<IdentityContext>()
         .AddDefaultTokenProviders();
+
+        // Register Repositories
+        services.AddScoped<IUserQueryRepository, UserQueryRepository>();
 
         // Register Services
         services.AddScoped<IAuthService, AuthService>();
@@ -61,6 +66,8 @@ public static class DependencyInjection
                 IssuerSigningKey = new SymmetricSecurityKey(key)
             };
         });
+
+        services.AddAuthorization();
 
         return services;
     }

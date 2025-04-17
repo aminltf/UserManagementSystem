@@ -1,5 +1,6 @@
 ﻿#nullable disable
 
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -14,9 +15,9 @@ public class AuthService : IAuthService
 {
     private readonly JwtSettings _jwtSettings;
 
-    public AuthService(JwtSettings jwtSettings)
+    public AuthService(IOptions<JwtSettings> options)
     {
-        _jwtSettings = jwtSettings;
+        _jwtSettings = options.Value;
     }
 
     public async Task<string> GenerateJwtTokenAsync(ApplicationUser user)
