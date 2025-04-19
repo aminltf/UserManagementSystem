@@ -22,9 +22,10 @@ public class ApplicationUser : IdentityUser<Guid>, IAuditableEntity
 
     }
 
-    public ApplicationUser(string userName, string passwordHash, UserRole role)
+    public ApplicationUser(string userName, string email, string passwordHash, UserRole role)
     {
         UserName = userName;
+        Email = email;
         PasswordHash = passwordHash;
         Role = role;
         PasswordChangedAt = DateTime.UtcNow;

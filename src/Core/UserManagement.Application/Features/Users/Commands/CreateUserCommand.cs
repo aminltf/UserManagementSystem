@@ -4,7 +4,7 @@ using UserManagement.Application.Features.Users.Dtos;
 
 namespace UserManagement.Application.Features.Users.Commands;
 
-public record CreateUserCommand(string UserName, string Password, string Role, string CreatedBy) : IRequest<UserDto>;
+public record CreateUserCommand(string UserName, string Email, string Password, string Role, string CreatedBy) : IRequest<UserDto>;
 
 public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
 {

@@ -1,6 +1,4 @@
-﻿#nullable disable
-
-using MediatR;
+﻿using MediatR;
 using UserManagement.Application.Common.Models.Filtering;
 using UserManagement.Application.Common.Models.Pagination;
 using UserManagement.Application.Common.Models.Sorting;

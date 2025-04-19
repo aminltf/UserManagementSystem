@@ -11,7 +11,6 @@ using UserManagement.WebAPI.Controllers.Base;
 namespace UserManagement.WebAPI.Controllers.v1;
 
 [ApiVersion("1.0")]
-[Authorize(Roles = "Admin")]
 public class UsersController : ApiControllerBase
 {
     [HttpPost("create")]

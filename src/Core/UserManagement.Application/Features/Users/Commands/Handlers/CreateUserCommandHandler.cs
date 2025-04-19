@@ -24,6 +24,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserD
     {
         var user = new ApplicationUser(
                 userName: request.UserName,
+                email: request.Email,
                 passwordHash: "",
                 role: Enum.Parse<UserRole>(request.Role, true)
             )
