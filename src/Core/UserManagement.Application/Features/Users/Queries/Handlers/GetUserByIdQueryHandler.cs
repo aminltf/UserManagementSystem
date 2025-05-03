@@ -11,18 +11,18 @@ namespace UserManagement.Application.Features.Users.Queries.Handlers;
 
 public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, UserDto>
 {
-    private readonly IUserQueryRepository _repository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public GetUserByIdQueryHandler(IUserQueryRepository repository, IMapper mapper)
+    public GetUserByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
-        _repository = repository;
+        _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
 
     public async Task<UserDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
-        var query = _repository.GetAll(request.IncludeDeleted);
+        var query = _unitOfWork.UserQuery.GetAll(request.IncludeDeleted);
 
         var user = await query
             .Where(x => x.Id == request.Id)

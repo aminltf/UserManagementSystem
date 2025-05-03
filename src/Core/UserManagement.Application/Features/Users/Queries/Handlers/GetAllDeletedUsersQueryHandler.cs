@@ -12,18 +12,18 @@ namespace UserManagement.Application.Features.Users.Queries.Handlers;
 
 public class GetAllDeletedUsersQueryHandler : IRequestHandler<GetAllDeletedUsersQuery, PageResponse<UserDto>>
 {
-    private readonly IUserQueryRepository _repository;
+    private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public GetAllDeletedUsersQueryHandler(IUserQueryRepository repository, IMapper mapper)
+    public GetAllDeletedUsersQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
-        _repository = repository;
+        _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
 
     public async Task<PageResponse<UserDto>> Handle(GetAllDeletedUsersQuery request, CancellationToken cancellationToken)
     {
-        var query = _repository.GetAll(includeDeleted: true)
+        var query = _unitOfWork.UserQuery.GetAll(includeDeleted: true)
             .Where(x => x.IsDeleted)
             .AsQueryable();
 

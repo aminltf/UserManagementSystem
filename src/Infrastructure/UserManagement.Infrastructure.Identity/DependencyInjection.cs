@@ -38,6 +38,7 @@ public static class DependencyInjection
 
         // Register Repositories
         services.AddScoped<IUserQueryRepository, UserQueryRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         // Register Services
         services.AddScoped<IAuthService, AuthService>();
