@@ -1,14 +1,6 @@
-﻿using FluentValidation;
-using MediatR;
+﻿using MediatR;
+using UserManagement.Application.Features.Users.Dtos;
 
 namespace UserManagement.Application.Features.Users.Commands;
 
-public record ChangePasswordCommand(Guid UserId, string CurrentPassword, string NewPassword, string ModifiedBy) : IRequest<Unit>;
-
-public class ChangePasswordCommandValidator : AbstractValidator<ChangePasswordCommand>
-{
-    public ChangePasswordCommandValidator()
-    {
-        
-    }
-}
+public record ChangePasswordCommand(ChangePasswordDto ChangePassword) : IRequest<Unit>;

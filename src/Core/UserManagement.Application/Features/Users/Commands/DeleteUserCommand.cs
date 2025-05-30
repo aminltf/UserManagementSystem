@@ -2,4 +2,4 @@
 
 namespace UserManagement.Application.Features.Users.Commands;
 
-public record DeleteUserCommand(Guid Id, string DeletedBy) : IRequest<Unit>;
+public record DeleteUserCommand(Guid Id, string DeletedBy) : IRequest<bool>;

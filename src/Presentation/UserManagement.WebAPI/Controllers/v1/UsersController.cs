@@ -19,12 +19,12 @@ public class UsersController : ApiControllerBase
         return Ok(await Mediator.Send(command));
     }
 
-    [HttpPut("update/{id:guid}")]
-    public async Task<ActionResult<UserDto>> Update(Guid id, UpdateUserCommand command)
-    {
-        if (id != command.Id) return BadRequest("ID mismatch");
-        return Ok(await Mediator.Send(command));
-    }
+    //[HttpPut("update/{id:guid}")]
+    //public async Task<ActionResult<UserDto>> Update(Guid id, UpdateUserCommand command)
+    //{
+    //    if (id != command.Id) return BadRequest("ID mismatch");
+    //    return Ok(await Mediator.Send(command));
+    //}
 
     [HttpDelete("soft-delete/{id:guid}")]
     public async Task<IActionResult> SoftDelete(Guid id, [FromQuery] string deletedBy)
@@ -47,13 +47,13 @@ public class UsersController : ApiControllerBase
         return NoContent();
     }
 
-    [HttpPost("change-password/{id:guid}")]
-    public async Task<IActionResult> ChangePassword(Guid id, ChangePasswordCommand command)
-    {
-        if (id != command.UserId) return BadRequest("ID mismatch");
-        await Mediator.Send(command);
-        return NoContent();
-    }
+    //[HttpPost("change-password/{id:guid}")]
+    //public async Task<IActionResult> ChangePassword(Guid id, ChangePasswordCommand command)
+    //{
+    //    if (id != command.UserId) return BadRequest("ID mismatch");
+    //    await Mediator.Send(command);
+    //    return NoContent();
+    //}
 
     [HttpGet("get-by-id/{id:guid}")]
     public async Task<ActionResult<UserDto>> GetById(Guid id, [FromQuery] bool includeDeleted = false)

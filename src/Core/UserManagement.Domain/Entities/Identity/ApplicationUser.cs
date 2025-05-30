@@ -31,14 +31,6 @@ public class ApplicationUser : IdentityUser<Guid>, IAuditableEntity
         PasswordChangedAt = DateTime.UtcNow;
     }
 
-    public void ChangePassword(string newPasswordHash, string modifiedBy)
-    {
-        PasswordHash = newPasswordHash;
-        PasswordChangedAt = DateTime.UtcNow;
-        ModifiedBy = modifiedBy;
-        ModifiedAt = DateTime.UtcNow;
-    }
-
     public void Deactivate(string modifiedBy)
     {
         IsActive = false;

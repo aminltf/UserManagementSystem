@@ -3,4 +3,4 @@ using UserManagement.Application.Features.Users.Dtos;
 
 namespace UserManagement.Application.Features.Users.Commands;
 
-public record CreateUserCommand(CreateUserDto CreateUser) : IRequest<Guid>;
+public record ResetPasswordCommand(ResetPasswordDto ResetPassword) : IRequest<Unit>;
