@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using UserManagement.Application.Common.Interfaces.Identity;
 using UserManagement.Application.Features.Auth.Dtos;
 using UserManagement.Domain.Entities.Identity;
@@ -34,7 +35,21 @@ public class AuthController : ControllerBase
         if (_authService.IsPasswordExpired(user))
             return BadRequest("Password expired. Please change your password.");
 
-        var token = await _authService.GenerateJwtTokenAsync(user);
-        return Ok(new { token });
+        var result = await _authService.GenerateJwtTokenAsync(user);
+        return Ok(result);
+    }
+
+    [HttpPost("refresh")]
+    public async Task<IActionResult> Refresh([FromBody] RefreshTokenRequest request)
+    {
+        try
+        {
+            var result = await _authService.RefreshTokenAsync(request.RefreshToken);
+            return Ok(result);
+        }
+        catch (SecurityTokenException e)
+        {
+            return Unauthorized(e.Message);
+        }
     }
 }

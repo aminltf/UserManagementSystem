@@ -16,6 +16,9 @@ public class ApplicationUser : IdentityUser<Guid>, IAuditableEntity
     public DateTime? ModifiedAt { get; set; }
     public string? DeletedBy { get; set; }
     public DateTime? DeletedAt { get; set; }
+    public string? RefreshToken { get; set; }
+    public DateTime? RefreshTokenExpiryTime { get; set; }
+    public bool IsRefreshTokenRevoked { get; set; }
 
     public ApplicationUser()
     {
